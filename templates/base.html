@@ -34,7 +34,7 @@
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Корзина</a></li>
+        <li><a href="{% url 'cart' %}">Корзина</a></li>
 
       </ul>
     </div><!-- /.navbar-collapse -->
@@ -50,6 +50,30 @@
   </div>
 
     <!-- Latest compiled and minified JavaScript -->
+<script   src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="{% static 'main.js' %}"></script>
+    <script>
+        function cart_ajax(url, item_id, item_position, count) {
+          $.ajax({
+            type: "POST",
+            url: url,
+            dataType: "json",
+            async: true,
+            data: {
+              csrfmiddlewaretoken: '{{ csrf_token }}',
+              item_id: item_id,
+              item_position: item_position,
+              count: count
+            },
+            success: function(json){
+              console.log(json);
+            },
+            error: function(){
+              console.log('крах');
+            }
+          });
+        }
+  </script>
 </body>
 </html>
