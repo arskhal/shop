@@ -23,7 +23,7 @@
         <tr>
           <td class="item_position">{{ forloop.counter }}</td>
           <td>{{ cart_item.title }}</td>
-          <td><img width="100px" src="{{ cart_item.img.url }}" alt="{{ cart_item.title }}"></td>
+          <td><img width="100px" src="{{ cart_item.get_img }}" alt="{{ cart_item.title }}"></td>
           <td>
             <input type="button" class="btn set_count" value="{{ cart_item.count }}">
             <a href="#" class="change_item_count" style="display: none">сохранить</a>
